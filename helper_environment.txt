@@ -37,9 +37,53 @@
     - Note: git remote rename and git remote remove to rename and remove the remote repository.
     - Command: git push -u origin main
 
-    git add helper_git.txt
-    git commit -m "first attempt for helper_git.txt"
-    git push -u origin main  [user:  ecorkery762  password: ]   ... Authentication - see 1.2
+    Git Push
+    Git push - old method
+        git add helper_git.txt
+        git commit -m "first attempt for helper_git.txt"
+        git push -u origin main  [user:  ecorkery762  password: ]   ... Authentication - see 1.2
+        git push -u origin main [Matt Harrison recommends]
+
+        Git fails authentication with:
+        remote: Invalid username or token. Password authentication is not supported for Git operations.
+        fatal: Authentication failed for 'https://github.com/ecorkery762/helpers.git/'
+
+        This error is clear and very common 👍
+        GitHub no longer allows password authentication for git push over HTTPS. You must use either a 
+        Personal Access Token (PAT) or SSH.
+
+    Git push - PAT
+        Get the PAT:
+        Github: https://github.com/settings/profile [from profile on top RHS]
+        Github: developer settings which is last on the list-menu on the LHS of settings
+        Personal access token (classic)
+            Custom to 2 days and note password use
+            repo boxes highlighted [the top one - leave rest alone]
+            generate and save (think can generate another one if required)
+            save token to notepad as will not see again
+
+    The push using PAT
+        Reset of global parameter required so check base
+            git config --show-origin --get credential.helper
+            ANS: file:/Library/Developer/CommandLineTools/usr/share/git-core/gitconfig	osxkeychain 
+        
+        git push -u origin main
+
+        Username for 'https://github.com': ecorkery762
+        Password for 'https://ecorkery762@github.com': <PAT>
+        Enumerating objects: 7, done.
+        Counting objects: 100% (7/7), done.
+        Delta compression using up to 8 threads
+        Compressing objects: 100% (6/6), done.
+        Writing objects: 100% (6/6), 2.39 KiB | 2.39 MiB/s, done.
+        Total 6 (delta 1), reused 0 (delta 0), pack-reused 0
+        remote: Resolving deltas: 100% (1/1), done.
+        To https://github.com/ecorkery762/helpers.git
+        77c22e2..4a05bc8  main -> main
+        (base) ec@Erics-MacBook-Pro helpers % 
+
+
+
 
 
 
