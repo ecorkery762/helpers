@@ -1,0 +1,138 @@
+1. GIT
+1.1 Structure of local (master branch) to github (hosting - remote branch) and moving files to github
+1.2 Writing to Github
+1.2.1 PAT
+1.2.1 SSH
+
+2. Virtual Environments
+2.1 Creation commands
+2.2 Activation commands non-windows
+2.3 Actual commands
+2.4 Installing libraries
+
+3. Running Jupyter Notebooks
+
+
+
+
+1. GIT
+1.1 Structure of local (master branch) to github (hosting - remote branch) and moving files to github
+
+    Local (master branch)
+    - git clone link from github
+    - git status and git init
+    - edit a file
+    - save locally (working directory)
+
+    Local to staging before pushing to github
+    - git add to place file in staging area (including git add .). Note: still local only
+    - git commit them (all added files) to the master branch which we have locally
+
+    Staging to github
+    - Check for remote branch (will have if cloned from github) with command git remote -v [v for view].
+      This command returns the url of the remote repo.
+    - By convention the remote branch is named "origin"
+    - Note: when creating a repository on github you will have the option of cloning a local directory.
+      But we created on github first and then cloned to local in the setup phase.
+    - Note: git remote rename and git remote remove to rename and remove the remote repository.
+    - Command: git push -u origin main
+
+    git add helper_git.txt
+    git commit -m "first attempt for helper_git.txt"
+    git push -u origin main  [user:  ecorkery762  password: ]   ... Authentication - see 1.2
+
+
+
+
+2. Virtual Environments
+
+    Copy of the base installation which allows versions of libraries to be installed as required
+    it is created (standard venv) and activeated (switching from base to virtual).
+
+    Activation involves updating the PATH variable with the correct environment for the python
+    binary being executed.
+
+2.1 Creation commands
+
+    which python
+    python --version
+    <python version/path> -m venv <your environment name>
+
+
+2.2 Activation commands non-windows
+
+    source <path-to-env>/bin/activate
+
+2.3 Actual commands [updated to ~/projects_enviromnents to keep all virtual together]
+
+
+    (base) % cd /Users/ec/projects_environments/virtual
+    (base) % echo $PATH
+    (base) % which python
+    (base) % python --version
+    (base) % python3.12 --version
+             Python 3.12.7
+    # CREATE
+    (base) % python3.12 -m venv python_train_udemy_fb00_fundamentals
+    (base) % cd python_train_udemy_fb00_fundamentals
+    (base) % ls -l
+
+    # ACTIVATE
+    (base) % source python_train_udemy_fb00_fundamentals/bin/activate
+     OR    % source ~/projects_environments/virtual/python_train_udemy_fb00_fundamentals/bin/activate
+
+    (pydantic_train_fb) (base) ec@Erics-MacBook-Pro Fred_Baptiste_05_Pydantic %
+
+    (pydantic_train_fb) (base) % echo $PATH
+    (pydantic_train_fb) (base) % which python3.12
+                                 /Users/ec/projects_environments/virtual/pydantic_train_udemy_fb/bin/python3.12
+
+     # DEACTIVATE
+     (pydantic_train_fb) (base) % deactivate
+     base) % echo $PATH
+     base) % which python3.12
+
+     #Remove
+     rm -rf <directory>
+
+
+2.4 Installing libraries
+
+    pip install numpy==1.2.2   # >=, >
+    cp ~/Documents/COURSES/Courses_Udemy/Fred_Baptiste_01_Fundamentals/python-fundamentals-main/02\ -\ Installing\ and\ Running\ Python/requirements.txt ./
+
+    pip install jupyterthemes
+    pip freeze                        # list what was installed in the virtual environment
+
+    pip install -r requirements.txt
+
+
+
+
+
+
+    3. Running Jupyter Notebooks
+    ============================
+
+    From a command prompt:
+    1. Navigate to your project root folder.
+    2. Activate your virtual environment
+    3. run Jupyter notebooks: jupyter notebook .
+    4. If a web browser does not automatically open up, find the URL in the command prompt window (output when Jupyter starts up), and paste that URL into your browser.
+
+    You can create Jupyter notebooks anywhere in your project folder - it does not have to be in the root of your project folder, you can create sub-folders and organize your notebooks however you want - just like you wold organize Excel or Word documents.
+
+    Keyboard Shortcuts
+    ------------------
+    - execute a cell: Shift+Enter
+    - select current cell: Esc (or click on cell margin)
+    - delete selected cell: DD (type D twice in succession)
+    - change selected cell to Markup: M
+    - change selected cell to Code: Y
+    - save: S
+    - insert cell above current selected cell: B
+    - insert cell after currently selected cell: A
+
+    Don't forget to re-run your Jupyter notebook when you re-load it later - this will just re-execute all the cells (but it will stop processing the cells if it encounters an error).
+
+    Jupyter Notebook documentation: https://jupyter-notebook.readthedocs.io/en/stable/
